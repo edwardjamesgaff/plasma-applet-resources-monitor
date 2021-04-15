@@ -43,5 +43,5 @@ Item {
             radius: 3
         }
     }
-    
+
 }

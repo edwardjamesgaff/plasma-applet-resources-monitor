@@ -55,22 +55,22 @@ Item {
     property color warningColor: Qt.tint(theme.textColor, '#60FF0000')
     property string textFontFamily: theme.defaultFont.family
 
-    property double widgetWidth: !verticalLayout ? (itemWidth*containerCount + itemMargin*(containerCount)*2) : itemWidth
+    property double widgetWidth: !verticalLayout ? (itemWidth*containerCount + itemMargin*(containerCount)*1) : itemWidth
     property double widgetHeight: verticalLayout ? (itemWidth*containerCount + itemMargin*(containerCount)*2) : itemWidth
 
     Layout.preferredWidth:  widgetWidth
     Layout.maximumWidth: widgetWidth
     Layout.preferredHeight: widgetHeight
     Layout.maximumHeight: widgetHeight
-
+    
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-
+    
     anchors.fill: parent
-
+    
     onShowMemoryInPercentChanged: {
         allUsageProportionChanged()
     }
-
+    
     Kio.KRun {
         id: kRun
     }
@@ -316,7 +316,7 @@ Item {
                 font.pointSize: -1
                 visible: showClock
             }
-
+            
             PlasmaComponents.Label {
                 id: averageClockInfoText
                 anchors.verticalCenter: parent.verticalCenter
@@ -326,9 +326,9 @@ Item {
                 text: 'Clock'
                 visible: false
             }
-
+        
         }
-
+        
         DropShadow {
         	visible: enableShadows
             anchors.fill: cpuTextContainer
@@ -339,18 +339,18 @@ Item {
             color: theme.backgroundColor
             source: cpuTextContainer
         }
-
+        
         MouseArea {
             anchors.fill: parent
             hoverEnabled: enableHints
-
+            
             onEntered: {
                 cpuInfoText.visible = true
                 cpuPercentText.visible = false
                 averageClockInfoText.visible = showClock && true
                 averageClockText.visible = false
             }
-
+            
             onExited: {
                 cpuInfoText.visible = false
                 cpuPercentText.visible = true
@@ -359,7 +359,7 @@ Item {
             }
         }
     }
-
+    
     Item {
         id: ramMonitor
         width: itemWidth
@@ -368,23 +368,23 @@ Item {
         anchors.leftMargin: showCpuMonitor && !verticalLayout ? itemWidth + itemMargin : 0
         anchors.top: parent.top
         anchors.topMargin: showCpuMonitor && verticalLayout ? itemWidth + itemMargin : 0
-
+        
         visible: showRamMonitor
-
+        
         HistoryGraph {
             listViewModel: ramGraphModel
             barColor: theme.highlightColor
         }
-
+        
         HistoryGraph {
             listViewModel: swapGraphModel
             barColor: '#FF0000'
         }
-
+        
         Item {
             id: ramTextContainer
             anchors.fill: parent
-
+            
             PlasmaComponents.Label {
                 id: ramInfoText
                 text: 'RAM'
@@ -395,7 +395,7 @@ Item {
                 verticalAlignment: Text.AlignTop
                 visible: false
             }
-
+            
             PlasmaComponents.Label {
                 id: ramPercentText
                 anchors.right: parent.right
@@ -404,7 +404,7 @@ Item {
                 font.pixelSize: fontPixelSize
                 font.pointSize: -1
             }
-
+            
             PlasmaComponents.Label {
                 id: swapPercentText
                 anchors.verticalCenter: parent.verticalCenter
@@ -412,7 +412,7 @@ Item {
                 font.pixelSize: fontPixelSize
                 font.pointSize: -1
             }
-
+            
             PlasmaComponents.Label {
                 id: swapInfoText
                 anchors.verticalCenter: parent.verticalCenter
@@ -423,9 +423,9 @@ Item {
                 text: 'Swap'
                 visible: false
             }
-
+            
         }
-
+        
         DropShadow {
             visible: enableShadows
             anchors.fill: ramTextContainer
@@ -436,11 +436,11 @@ Item {
             color: theme.backgroundColor
             source: ramTextContainer
         }
-
+        
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-
+            
             onEntered: {
                 if (enableHints) {
                     ramInfoText.visible = true
@@ -451,19 +451,19 @@ Item {
                     showMemoryInPercent = !memoryInPercent
                 }
             }
-
+            
             onExited: {
                 ramInfoText.visible = false
                 ramPercentText.visible = true
                 swapInfoText.visible = false
                 swapPercentText.visible = true
-
+                
                 showMemoryInPercent = memoryInPercent
             }
         }
     }
-    
-     Item {
+
+    Item {
         id: netMonitor
         width: itemWidth
         height: itemHeight
@@ -566,5 +566,5 @@ Item {
             kRun.openService("org.kde.ksysguard")
         }
     }
-
+    
 }
