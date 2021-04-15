@@ -3,7 +3,7 @@ import QtQuick.Controls 1.3
 import QtQuick.Layouts 1.1
 
 Item {
-    
+
     property alias cfg_updateInterval: updateIntervalSpinBox.value
     property alias cfg_fontScale: fontScale.value
     property alias cfg_showCpuMonitor: showCpuMonitor.checked
@@ -17,7 +17,7 @@ Item {
     GridLayout {
         Layout.fillWidth: true
         columns: 2
-        
+
         Label {
             text: i18n('Update interval:')
             Layout.alignment: Qt.AlignRight
@@ -47,44 +47,44 @@ Item {
             height: 10
             Layout.columnSpan: 2
         }
-        
+
         CheckBox {
             id: showCpuMonitor
             Layout.columnSpan: 2
             text: i18n('Show CPU monitor')
         }
-        
+
         CheckBox {
             id: showClock
             Layout.columnSpan: 2
             text: i18n('Show clock')
             enabled: showCpuMonitor.checked
         }
-        
+
         CheckBox {
             id: showRamMonitor
             Layout.columnSpan: 2
             text: i18n('Show RAM monitor')
         }
-        
+
         CheckBox {
             id: memoryInPercent
             Layout.columnSpan: 2
             text: i18n('Memory in percentage')
         }
-        
+
         Item {
             width: 2
             height: 10
             Layout.columnSpan: 2
         }
-        
+
         CheckBox {
             id: verticalLayout
             Layout.columnSpan: 2
             text: i18n('Vertical layout')
         }
-        
+
         CheckBox {
             id: enableHints
             Layout.columnSpan: 2
@@ -98,5 +98,5 @@ Item {
         }
 
     }
-    
+
 }
